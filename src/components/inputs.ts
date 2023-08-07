@@ -67,3 +67,9 @@ export const inputs = [
     required: true,
   },
 ];
+
+export const TestId = {
+  FORM_INPUT_CONTAINER: "formInputContainer",
+  FORM_LABEL: "formLabel",
+  FORM_INPUT: "formInput",
+};

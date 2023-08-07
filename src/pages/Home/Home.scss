@@ -27,6 +27,11 @@
     margin-top: 10px;
     cursor: pointer;
   }
+
+  button:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
 }
 
 @keyframes home {

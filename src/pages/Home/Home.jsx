@@ -1,7 +1,7 @@
 import { inputs } from "../../components/inputs";
 import FormInput from "../../components/FormInput";
 import "./Home.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Home = () => {
   const [formValues, setFormValues] = useState({
@@ -13,6 +13,15 @@ const Home = () => {
     password: "",
     confirmPassword: "",
   });
+  const [emptyInputFields, setEmptyInputFields] = useState(true);
+
+  useEffect(() => {
+    const allInputValues = Object.values(formValues).every(
+      (inputValue) => inputValue.length > 0
+    );
+
+    setEmptyInputFields(!allInputValues);
+  }, [formValues]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -27,7 +36,7 @@ const Home = () => {
   };
   return (
     <div className="app">
-      <form className="home" onSubmit={submitHandler}>
+      <form className="home" onSubmit={submitHandler} data-testid="form">
         <h1>REGISTER</h1>
         {inputs.map((input) => (
           <FormInput
@@ -42,7 +51,13 @@ const Home = () => {
             onChange={handleChange}
           />
         ))}
-        <button type="submit">Submit</button>
+        <button
+          type="submit"
+          data-testid="buttonId"
+          disabled={emptyInputFields}
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

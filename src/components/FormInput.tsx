@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { TestId } from "./inputs";
 import "./FormInput.scss";
 
 const FormInput: React.FC<{
@@ -26,12 +27,14 @@ const FormInput: React.FC<{
   };
 
   const inputError = !valid && blur;
-  // React.HTMLAttributes<HTMLInputElement>.style?: React.CSSProperties | undefined
 
   return (
-    <div className="formInput">
-      <label htmlFor={id}>{label} </label>
+    <div className="formInput" data-testid={TestId.FORM_INPUT_CONTAINER}>
+      <label htmlFor={id} data-testid={TestId.FORM_LABEL}>
+        {label}{" "}
+      </label>
       <input
+        data-testid={TestId.FORM_INPUT}
         {...inputAttributes}
         id={id}
         value={value}
